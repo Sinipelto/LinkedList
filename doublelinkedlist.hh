@@ -18,11 +18,15 @@ public:
     DoubleLinkedList();
     DoubleLinkedList(Data * const data);
     DoubleLinkedList(const Data &data);
-    DoubleLinkedList(const long& id, const int &order, const std::string &value);
-    DoubleLinkedList(const DoubleLinkedList &&list);
 
-    unsigned long length();
-    Data* get_value(const unsigned &n);
+    /* SHOULD BE REMOVED: NO DATA-DEPENDENT IMPLEMENTATIONS */
+    DoubleLinkedList(const long& id, const int &order, const std::string &value);
+
+    DoubleLinkedList(const DoubleLinkedList &list);
+    DoubleLinkedList(DoubleLinkedList &&list);
+
+    unsigned long length() const;
+    Data* get_value(const unsigned &n) const;
 
     void add_value(Data * const data);
     void add_value(const Data &data);
@@ -43,10 +47,11 @@ private:
 
     Node* _first;
     Node* _last;
-
     unsigned long _count;
 
     bool check_n(const unsigned &n);
+    void reset();
+    void add_first(Data * const data);
 
 };
 
